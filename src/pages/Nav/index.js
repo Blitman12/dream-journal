@@ -21,6 +21,10 @@ export default function Nav() {
                     <Link to="/register" style={{ textDecoration: "none", color: "white" }}>
                         <Button color="inherit">Register</Button>
                     </Link>
+                    <Button color="inherit">Logout</Button>
+                    <Link to="/newdream" style={{ textDecoration: "none", color: "white" }}>
+                        <Button color="inherit">New Dream</Button>
+                    </Link>
                 </Toolbar>
             </AppBar>
         </Box>
