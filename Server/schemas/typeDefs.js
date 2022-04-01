@@ -10,6 +10,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         loginUser(email: String!, password: String!): Auth
         addDream(title: String!, date: String!, dreamContent: String!, id: ID): User
+        updateDream(title: String, date: String, dreamContent: String, dreamId: ID!, id: ID): User
     }
 
     type User {

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
+import Auth from '../../utils/auth'
 
 
 export default function Nav() {
@@ -21,7 +22,7 @@ export default function Nav() {
                     <Link to="/register" style={{ textDecoration: "none", color: "white" }}>
                         <Button color="inherit">Register</Button>
                     </Link>
-                    <Button color="inherit">Logout</Button>
+                    {Auth.loggedIn() ? <Button color="inherit" onClick={Auth.logout}>Logout</Button> : null}
                     <Link to="/newdream" style={{ textDecoration: "none", color: "white" }}>
                         <Button color="inherit">New Dream</Button>
                     </Link>

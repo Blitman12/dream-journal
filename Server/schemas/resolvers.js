@@ -42,6 +42,14 @@ const resolvers = {
                 {$addToSet: {savedDreams: {title: title, date: date, dreamContent: dreamContent}}},
                 {new: true, runValidators: true}
             )
+        },
+        updateDream: async (parent, {title, date, dreamContent, id, dreamId}) => {
+            const user = await User.findById(id)
+            const dream = await user.savedDreams.id(dreamId)
+            dream.set(title, date, dreamContent)
+            return user
+            // console.log(dreams.savedDreams)
+            // return dreams
         }
     }
 }
