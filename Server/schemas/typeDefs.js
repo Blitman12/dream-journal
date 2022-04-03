@@ -9,7 +9,7 @@ const typeDefs = gql`
     type Mutation {
         addUser(username: String!, email: String!, password: String!): Auth
         loginUser(email: String!, password: String!): Auth
-        addDream(title: String!, date: String!, dreamContent: String!, id: ID): User
+        addDream(title: String!, date: String!, dreamContent: String!): User
         updateDream(title: String, date: String, dreamContent: String, dreamId: ID!, id: ID): User
     }
 

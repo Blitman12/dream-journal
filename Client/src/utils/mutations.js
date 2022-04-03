@@ -23,3 +23,16 @@ export const ADD_USER = gql`
     }
 }
 `
+
+export const ADD_DREAM = gql`
+mutation addDream($title: String!, $date: String!, $dreamContent: String!) {
+        addDream(title: $title, date: $date, dreamContent: $dreamContent) {
+        username
+        savedDreams {
+            title
+            date
+            dreamContent
+    }
+}
+}
+`

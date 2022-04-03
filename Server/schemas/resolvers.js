@@ -1,4 +1,4 @@
-const {User} = require("../models")
+const { User } = require("../models")
 const { AuthenticationError, ApolloError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -19,7 +19,7 @@ const resolvers = {
             const user = await User.create(args);
             const token = signToken(user);
             return { token, user };
-        },  
+        },
         loginUser: async (parent, { email, password }) => {
             const user = await User.findOne({ email });
 
@@ -36,14 +36,18 @@ const resolvers = {
             const token = signToken(user);
             return { token, user };
         },
-        addDream: async (parent, {title, date, dreamContent, id}) => {
-            return await User.findOneAndUpdate(
-                {_id: id},
-                {$addToSet: {savedDreams: {title: title, date: date, dreamContent: dreamContent}}},
-                {new: true, runValidators: true}
-            )
+        addDream: async (parent, { title, date, dreamContent }, context) => {
+            if (context.user) {
+                return await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { savedDreams: { title: title, date: date, dreamContent: dreamContent } } },
+                    { new: true, runValidators: true }
+                )
+            } else {
+                throw new ApolloError("You must be logged in")
+            }
         },
-        updateDream: async (parent, {title, date, dreamContent, id, dreamId}) => {
+        updateDream: async (parent, { title, date, dreamContent, id, dreamId }) => {
             const user = await User.findById(id)
             const dream = await user.savedDreams.id(dreamId)
             dream.set(title, date, dreamContent)
