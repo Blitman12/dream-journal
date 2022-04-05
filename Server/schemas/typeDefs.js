@@ -4,6 +4,7 @@ const typeDefs = gql`
     type Query {
         me: User
         savedDreams: [User]
+        dream: Dream
     }
 
     type Mutation {
@@ -11,6 +12,7 @@ const typeDefs = gql`
         loginUser(email: String!, password: String!): Auth
         addDream(title: String!, date: String!, dreamContent: String!): User
         updateDream(title: String, date: String, dreamContent: String, dreamId: ID!, id: ID): User
+        deleteDream(id: ID!): User
     }
 
     type User {

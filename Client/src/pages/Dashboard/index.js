@@ -24,12 +24,11 @@ export default function Dashboard() {
         return <div>Loading...</div>
     }
 
-
     return (
         <div>
             <h1 className={classes.title}>{data.me.username}`s dreams</h1>
-            {dreams && dreams.map((dream, index) => {
-                return <Dream key={dream.id} index={index} dream={dream} />
+            {dreams && dreams.map((dream) => {
+                return <Dream key={dream.id} dream={dream} id={dream.id}/>
             })}
         </div>
     )

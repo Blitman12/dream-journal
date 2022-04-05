@@ -36,3 +36,13 @@ mutation addDream($title: String!, $date: String!, $dreamContent: String!) {
 }
 }
 `
+
+export const DELETE_DREAM = gql`
+mutation deleteDream($id: ID!) {
+    deleteDream(id: $id) {
+        savedDreams{
+            title
+        }
+    }
+}
+`

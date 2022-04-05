@@ -63,6 +63,8 @@ export default function NewDream() {
     })
     const [addDream, { error: dreamError }] = useMutation(ADD_DREAM);
 
+    console.log(startDate.toISOString())
+
     const handleFormData = (event) => {
         const { name, value } = event.target
         setFormData({

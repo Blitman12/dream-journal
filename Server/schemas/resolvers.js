@@ -1,6 +1,7 @@
-const { User } = require("../models")
+const { User, Dream } = require("../models")
 const { AuthenticationError, ApolloError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
+
 
 const resolvers = {
     Query: {
@@ -54,6 +55,14 @@ const resolvers = {
             return user
             // console.log(dreams.savedDreams)
             // return dreams
+        },
+        deleteDream: async (parent, {id}, context) => {
+            const user = await User.findByIdAndUpdate(
+                {_id: context.user._id},
+                {$pull: { savedDreams: {_id: id} }},
+                {new: true, runValidators: true}
+            )
+            return user
         }
     }
 }
